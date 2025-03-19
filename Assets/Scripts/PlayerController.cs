@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rgbd;
     [SerializeField] float speed;
+    [SerializeField] GameObject ammoPrefab;
 
     private Vector2 playerDirection;
 
@@ -23,7 +24,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
 
     void FixedUpdate()
@@ -54,6 +58,14 @@ public class PlayerController : MonoBehaviour
             movement = Vector2.zero;
 
         return movement;
+    }
+
+    void Shoot()
+    {
+        if (this.ammoPrefab != null)
+            Instantiate(ammoPrefab, transform.position, Quaternion.identity);
+        else
+            Debug.LogError("ammoPrefab no asinado");
     }
 
 }
