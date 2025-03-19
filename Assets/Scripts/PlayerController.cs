@@ -62,8 +62,11 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        if (this.ammoPrefab != null)
-            Instantiate(ammoPrefab, transform.position, Quaternion.identity);
+        if (this.ammoPrefab != null){
+            GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
+            newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.playerDirection);
+        }
+            
         else
             Debug.LogError("ammoPrefab no asinado");
     }
