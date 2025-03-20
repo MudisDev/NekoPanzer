@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject ammoPrefab;
 
     private Vector2 playerDirection;
+    private Vector2 playerVelocity;
 
 
     private void Awake()
@@ -18,7 +19,8 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.playerDirection = Vector2.zero;
+        this.playerVelocity = Vector2.zero;
+        this.playerDirection = new Vector2(0, 1);
     }
 
     // Update is called once per frame
@@ -33,12 +35,12 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        this.playerDirection = DirectionPlayer();
+        this.playerVelocity = DirectionPlayer();
         // Normaliza la dirección para evitar que diagonal sea más rápida
-        this.playerDirection = playerDirection.normalized * speed;
+        this.playerVelocity = playerVelocity.normalized * speed;
 
         // Asigna directamente la velocidad en lugar de usar AddForce
-        this.rgbd.linearVelocity = this.playerDirection;
+        this.rgbd.linearVelocity = this.playerVelocity;
 
     }
 
@@ -47,13 +49,40 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = Vector2.zero;
 
         if (Input.GetKey(KeyCode.A))
+        {
             movement = new Vector2(-1, 0);
+            if (this.playerDirection != new Vector2(-1, 0))
+            {
+                this.playerDirection = new Vector2(-1, 0);
+                Debug.Log("Izquierda");
+            }
+        }
         else if (Input.GetKey(KeyCode.D))
+        {
             movement = new Vector2(1, 0);
-        else if (Input.GetKey(KeyCode.W))
+            if (this.playerDirection != new Vector2(1, 0))
+            {
+                this.playerDirection = new Vector2(1, 0);
+                Debug.Log("Derecha");
+            }
+        }
+        else if (Input.GetKey(KeyCode.W)){
             movement = new Vector2(0, 1);
+            if (this.playerDirection != new Vector2(0, 1))
+            {
+                this.playerDirection = new Vector2(0,1);
+                Debug.Log("Arriba");
+            }
+        }
         else if (Input.GetKey(KeyCode.S))
+        {
             movement = new Vector2(0, -1);
+            if (this.playerDirection != new Vector2(0, -1))
+            {
+                this.playerDirection = new Vector2(0,-1);
+                Debug.Log("Abajo");
+            }
+        }
         else
             movement = Vector2.zero;
 
@@ -62,11 +91,12 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
-        if (this.ammoPrefab != null){
+        if (this.ammoPrefab != null)
+        {
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.playerDirection);
         }
-            
+
         else
             Debug.LogError("ammoPrefab no asinado");
     }
