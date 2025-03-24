@@ -7,6 +7,7 @@ public class TurretController : MonoBehaviour
     bool canShoot;
     [SerializeField] GameObject ammoPrefab;
     [SerializeField] Vector2 directionShoot;
+    [SerializeField] int damage;
     private Rigidbody2D rgbd;
 
     void Awake()
@@ -27,6 +28,7 @@ public class TurretController : MonoBehaviour
             this.canShoot = false;
             StartCoroutine(Shoot());
         }
+
     }
 
     public IEnumerator Shoot()
@@ -35,12 +37,14 @@ public class TurretController : MonoBehaviour
         //{
         yield return new WaitForSeconds(1);
         this.disparos++;
-        Debug.Log($"Disparo no. -> {disparos}");
+        //Debug.Log($"Disparo no. -> {disparos}");
 
         if (this.ammoPrefab != null)
         {
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.directionShoot);
+            newAmmoPrefab.GetComponent<AmmoController>().SetEnum("turret");
+            newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
         }
 
         else

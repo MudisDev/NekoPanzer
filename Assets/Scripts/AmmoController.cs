@@ -1,11 +1,19 @@
 using UnityEngine;
 
+enum AmmoControllerEnum
+{
+    player, turret
+}
+
 public class AmmoController : MonoBehaviour
 {
     Rigidbody2D rgbd;
     [SerializeField] float shootSpeed = 5;
+    [SerializeField] AmmoControllerEnum typeSubject;
 
     string boderLayer = "Border";
+
+    private int damage;
 
     void Awake()
     {
@@ -20,7 +28,7 @@ public class AmmoController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log($"TypeSbject -> {this.typeSubject}");
     }
 
     public void SetDirection(Vector2 direction)
@@ -30,9 +38,31 @@ public class AmmoController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag(this.boderLayer)){
-            Debug.Log($"chocado Bv");
+        if (collision.gameObject.CompareTag(this.boderLayer))
+        {
+            //Debug.Log($"chocado Bv");
             Destroy(gameObject);
         }
+
+
+        if (collision.gameObject.CompareTag("PlayerTag") && this.typeSubject == AmmoControllerEnum.turret)
+        {
+            PlayerController.sharedInstance.SetLife(this.damage);
+            Destroy(gameObject);
+
+        }
+    }
+
+    public void SetEnum(string opcion)
+    {
+        if (opcion == AmmoControllerEnum.turret.ToString())
+        {
+            this.typeSubject = AmmoControllerEnum.turret;
+        }
+    }
+
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
     }
 }
