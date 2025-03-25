@@ -1,6 +1,8 @@
 using System.Collections;
 using Mono.Cecil.Cil;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 playerDirection;
     private Vector2 playerVelocity;
 
+    const int MAXLIFE = 100;
+    const int MINLIFE = 0;
 
     private void Awake()
     {
@@ -67,9 +71,9 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator GameOver()
     {
-        Debug.Log("Se entra a la corrutina");
+        //Debug.Log("Se entra a la corrutina");
         yield return new WaitForSeconds(1);
-        Debug.Log("Se inicia la corrutina");
+        //Debug.Log("Se inicia la corrutina");
 
         GameManager.sharedInstance.GameOver();
     }
@@ -84,7 +88,6 @@ public class PlayerController : MonoBehaviour
 
         // Asigna directamente la velocidad en lugar de usar AddForce
         this.rgbd.linearVelocity = this.playerVelocity;
-
     }
 
     Vector2 DirectionPlayer()
@@ -129,7 +132,6 @@ public class PlayerController : MonoBehaviour
         }
         else
             movement = Vector2.zero;
-
         return movement;
     }
 
@@ -140,7 +142,6 @@ public class PlayerController : MonoBehaviour
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.playerDirection);
         }
-
         else
             Debug.LogError("ammoPrefab no asinado");
     }
@@ -148,8 +149,13 @@ public class PlayerController : MonoBehaviour
     public void SetLife(int pointsLife)
     {
         this.playerLife -= pointsLife;
-        Debug.Log($"playerlife -> {this.playerLife}");
+        this.playerLife = math.clamp(this.playerLife, MINLIFE, MAXLIFE);
+        //Debug.Log($"playerlife -> {this.playerLife}");
     }
 
+    public int GetLife()
+    {
+        return this.playerLife;
+    }
 
 }
