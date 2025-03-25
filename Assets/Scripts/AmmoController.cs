@@ -62,7 +62,12 @@ public class AmmoController : MonoBehaviour
         {
             PlayerController.sharedInstance.SetLife(this.damage);
             Destroy(gameObject);
+        }
 
+        if (collision.gameObject.CompareTag("DestructibleObjectTag") && this.typeSubject == AmmoControllerEnum.player)
+        {
+            collision.gameObject.GetComponent<DestroyableObject>().SetObjectLife(this.damage);
+            Destroy(gameObject);
         }
     }
 
@@ -71,6 +76,10 @@ public class AmmoController : MonoBehaviour
         if (opcion == AmmoControllerEnum.turret.ToString())
         {
             this.typeSubject = AmmoControllerEnum.turret;
+        }
+        else if (opcion == AmmoControllerEnum.player.ToString())
+        {
+            this.typeSubject = AmmoControllerEnum.player;
         }
     }
 

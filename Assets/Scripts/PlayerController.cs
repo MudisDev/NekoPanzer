@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject ammoPrefab;
 
     [SerializeField] int playerLife;
+    [SerializeField] int damage;
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
             if (this.playerDirection != new Vector2(-1, 0))
             {
                 this.playerDirection = new Vector2(-1, 0);
-                Debug.Log("Izquierda");
+                //Debug.Log("Izquierda");
             }
         }
         else if (Input.GetKey(KeyCode.D))
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour
             if (this.playerDirection != new Vector2(1, 0))
             {
                 this.playerDirection = new Vector2(1, 0);
-                Debug.Log("Derecha");
+                //Debug.Log("Derecha");
             }
         }
         else if (Input.GetKey(KeyCode.W))
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour
             if (this.playerDirection != new Vector2(0, 1))
             {
                 this.playerDirection = new Vector2(0, 1);
-                Debug.Log("Arriba");
+                //Debug.Log("Arriba");
             }
         }
         else if (Input.GetKey(KeyCode.S))
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
             if (this.playerDirection != new Vector2(0, -1))
             {
                 this.playerDirection = new Vector2(0, -1);
-                Debug.Log("Abajo");
+                //Debug.Log("Abajo");
             }
         }
         else
@@ -141,6 +142,8 @@ public class PlayerController : MonoBehaviour
         {
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.playerDirection);
+            newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");
+            newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
         }
         else
             Debug.LogError("ammoPrefab no asinado");
