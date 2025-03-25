@@ -23,6 +23,8 @@ public class TurretController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.sharedInstance.currentGameState != GameState.inGame)
+            return;
         if (this.canShoot)
         {
             this.canShoot = false;

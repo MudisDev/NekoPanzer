@@ -1,3 +1,4 @@
+using System.Collections;
 using Mono.Cecil.Cil;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int playerLife;
 
+    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D boxCollider;
+
     private Vector2 playerDirection;
     private Vector2 playerVelocity;
 
@@ -17,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         this.rgbd = GetComponent<Rigidbody2D>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.boxCollider = GetComponent<BoxCollider2D>();
 
         if (sharedInstance != null && sharedInstance != this)
         {
@@ -37,6 +43,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.sharedInstance.currentGameState != GameState.inGame)
+            return;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
@@ -44,12 +52,31 @@ public class PlayerController : MonoBehaviour
 
         if (this.playerLife <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            //gameObject.SetActive(false);
+            DisablePlayer();
+            StartCoroutine(GameOver());
         }
     }
 
+    public void DisablePlayer()
+    {
+        this.spriteRenderer.enabled = false;
+        this.boxCollider.enabled = false;
+    }
+
+    public IEnumerator GameOver()
+    {
+        Debug.Log("Se entra a la corrutina");
+        yield return new WaitForSeconds(1);
+        Debug.Log("Se inicia la corrutina");
+
+        GameManager.sharedInstance.GameOver();
+    }
     void FixedUpdate()
     {
+        if (GameManager.sharedInstance.currentGameState != GameState.inGame)
+            return;
 
         this.playerVelocity = DirectionPlayer();
         // Normaliza la dirección para evitar que diagonal sea más rápida

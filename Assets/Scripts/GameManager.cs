@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState = GameState.menu; //Variable para saber estado del juego, al inicio esta en menu principal
 
     [SerializeField] bool gameIsPaused = false;
-    //[SerializeField] Canvas canvasMenu, canvasGameOver, canvasInGame, canvasPause, canvasWin, canvasTouchUI;
+    [SerializeField] Canvas canvasMenu, canvasGameOver, canvasInGame, canvasPause, canvasWin /* canvasTouchUI */;
     private void Awake()
     {
         sharedInstance = this;
@@ -27,14 +27,14 @@ public class GameManager : MonoBehaviour
         /* if (DataStorage.sharedInstance.GetEnableMainMenu())
             BackToMenu();
         else */
-            StartGame();
-        
+        StartGame();
+
     }
 
     private void Update()
     {
         //if (InputManager.sharedInstance.GetPauseButton())
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
             TogglePause();
     }
     public void StartGame()
@@ -74,13 +74,13 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         //DataStorage.sharedInstance.ResetData();
-        this.SetGameState(GameState.gameOver);     
+        this.SetGameState(GameState.gameOver);
     }
 
     public void Win()
     {
         //DataStorage.sharedInstance.ResetData();
-        this.SetGameState(GameState.win);   
+        this.SetGameState(GameState.win);
     }
 
     public void BackToMenu()
@@ -97,62 +97,64 @@ public class GameManager : MonoBehaviour
         {
             //DataStorage.sharedInstance.ResetData();
             //ChangeScene.sharedInstance.RefreshScene();
-        }
-            
-        this.SetGameState(GameState.menu); */
+        }*/
+
+        this.SetGameState(GameState.menu);
     }
 
     //Desactiva todos los canvas a la vez
-    /* void SetCanvasEnable()
+    void SetCanvasEnable()
     {
         canvasMenu.enabled = false;
         canvasGameOver.enabled = false;
         canvasInGame.enabled = false;
         canvasPause.enabled = false;
         canvasWin.enabled = false;
-        this.canvasTouchUI.enabled = false;
-    } */
+        //this.canvasTouchUI.enabled = false;
+    }
 
     //Funcion que cambia el estado del juego
     //Activa el canvas correspondiente
     void SetGameState(GameState newGameState)
     {
         // sera necesario que solo sea en el lvl1
-        if(newGameState == GameState.menu)
+        if (newGameState == GameState.menu)
         {
             //Preparar codigo para volver al menu
-           /*  SetCanvasEnable();
-            canvasMenu.enabled = true; */
-            
+            SetCanvasEnable();
+            canvasMenu.enabled = true;
 
-        } else if(newGameState == GameState.gameOver)
+
+        }
+        else if (newGameState == GameState.gameOver)
         {
             //Preparar codigo para pantalla de gameover
-            /* SetCanvasEnable();
-            canvasGameOver.enabled = true; */
-            
-        } else if(newGameState == GameState.inGame)
+            SetCanvasEnable();
+            canvasGameOver.enabled = true;
+
+        }
+        else if (newGameState == GameState.inGame)
         {
 
             //DataStorage.sharedInstance.SetEnableMainMenu(false); //es para que no aparezca  el main menu al cambiar de escena.
             //Preparar codigo para estar en juego
-           /*  SetCanvasEnable();
+            SetCanvasEnable();
             canvasInGame.enabled = true;
-            this.canvasTouchUI.enabled = true; */
-   
+            //this.canvasTouchUI.enabled = true;
+
         }
         else if (newGameState == GameState.pause)
         {
             //Preparar codigo para estar en juego
-            /* SetCanvasEnable();
-            canvasPause.enabled = true; */
-            
+            SetCanvasEnable();
+            canvasPause.enabled = true;
+
         }
         else if (newGameState == GameState.win)
         {
             //Preparar codigo para estar en juego
-            /* SetCanvasEnable();
-            canvasWin.enabled = true; */
+            SetCanvasEnable();
+            canvasWin.enabled = true;
         }
         this.currentGameState = newGameState;
 
@@ -161,10 +163,10 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
              Application.Quit();
-        #endif
+#endif
     }
 }
