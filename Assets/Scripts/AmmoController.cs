@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 enum AmmoControllerEnum
@@ -86,5 +87,11 @@ public class AmmoController : MonoBehaviour
     public void SetDamage(int damage)
     {
         this.damage = damage;
+    }
+
+    public void SetShootSpeed(float speed)
+    {
+        this.shootSpeed = speed;
+        this.shootSpeed = math.clamp(this.shootSpeed, 0, 10);
     }
 }

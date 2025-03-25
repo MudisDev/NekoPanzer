@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] int playerLife;
     [SerializeField] int damage;
+    [SerializeField] float shootSpeed;
+    [SerializeField] float shootCooldown;
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
+
+    private bool canShoot;
 
     private void Awake()
     {
@@ -43,6 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         this.playerVelocity = Vector2.zero;
         this.playerDirection = new Vector2(0, 1);
+        this.canShoot = true;
     }
 
     // Update is called once per frame
@@ -50,15 +55,14 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame)
             return;
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && this.canShoot)
         {
-            Shoot();
+            this.canShoot = false;
+            StartCoroutine(Shoot());
         }
 
         if (this.playerLife <= 0)
         {
-            //Destroy(gameObject);
-            //gameObject.SetActive(false);
             DisablePlayer();
             StartCoroutine(GameOver());
         }
@@ -72,10 +76,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator GameOver()
     {
-        //Debug.Log("Se entra a la corrutina");
         yield return new WaitForSeconds(1);
-        //Debug.Log("Se inicia la corrutina");
-
         GameManager.sharedInstance.GameOver();
     }
     void FixedUpdate()
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
         return movement;
     }
 
-    void Shoot()
+    public IEnumerator Shoot()
     {
         if (this.ammoPrefab != null)
         {
@@ -144,9 +145,13 @@ public class PlayerController : MonoBehaviour
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.playerDirection);
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");
             newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
+            newAmmoPrefab.GetComponent<AmmoController>().SetShootSpeed(this.shootSpeed);
         }
         else
             Debug.LogError("ammoPrefab no asinado");
+
+        yield return new WaitForSeconds(this.shootCooldown);
+        this.canShoot = true;
     }
 
     public void SetLife(int pointsLife)
@@ -160,5 +165,4 @@ public class PlayerController : MonoBehaviour
     {
         return this.playerLife;
     }
-
 }

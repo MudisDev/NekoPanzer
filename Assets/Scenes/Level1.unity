@@ -1485,9 +1485,17 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6441491312262671215, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
+      propertyPath: shootSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441491312262671215, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
       propertyPath: sliderLife
       value: 
       objectReference: {fileID: 1379209616}
+    - target: {fileID: 6441491312262671215, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
+      propertyPath: shootCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8063808594575472113, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
       propertyPath: m_Name
       value: Player
