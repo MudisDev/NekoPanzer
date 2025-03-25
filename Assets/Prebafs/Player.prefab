@@ -178,3 +178,6 @@ MonoBehaviour:
   speed: 5
   ammoPrefab: {fileID: 2133177825938633761, guid: e6ccaab53292d8e4992f48cf706db460, type: 3}
   playerLife: 100
+  damage: 0
+  shootSpeed: 0
+  shootCooldown: 0

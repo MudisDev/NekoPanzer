@@ -165,4 +165,17 @@ public class PlayerController : MonoBehaviour
     {
         return this.playerLife;
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Sand"))
+        {
+            this.speed /= 2;
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Sand"))
+            this.speed *= 2;
+    }
 }
