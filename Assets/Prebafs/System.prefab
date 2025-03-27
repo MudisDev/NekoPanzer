@@ -554,8 +554,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_AnchoredPosition: {x: -0.40699768, y: 0}
+  m_SizeDelta: {x: 9.186, y: -0.0497}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1947149421843494612
 CanvasRenderer:
@@ -759,6 +759,7 @@ Transform:
   m_Children:
   - {fileID: 6931274095414208467}
   - {fileID: 6964297152617183881}
+  - {fileID: 6572717238320878025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3087459545861663823
@@ -1058,17 +1059,17 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8063808594575472113, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 439367475525159128}
+        m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
+        m_MethodName: UpdateHealthBar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1315,8 +1316,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -5, y: 0}
-  m_SizeDelta: {x: -20, y: 0}
+  m_AnchoredPosition: {x: 0.46489716, y: 0}
+  m_SizeDelta: {x: -9.0703, y: -0.2626}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &173657429829692802
 PrefabInstance:
@@ -1676,4 +1677,66 @@ Canvas:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8353306059959119028, guid: 17f61fb17282ab24ebb4dd3149c1445b, type: 3}
   m_PrefabInstance: {fileID: 1046265267504552530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8419860421516439134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5503083488923979692}
+    m_Modifications:
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.9070834
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.28712842
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6266265498953755770, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+--- !u!4 &6572717238320878025 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3454157492687765399, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
+  m_PrefabInstance: {fileID: 8419860421516439134}
   m_PrefabAsset: {fileID: 0}
