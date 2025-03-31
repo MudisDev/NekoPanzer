@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public static CameraFollow sharedInstance;
-    [SerializeField] GameObject follow;
+    private GameObject follow;
     //[SerializeField] Transform minPosition, maxPosition;
     private Vector2 minCameraPosition, maxCameraPosition;
 
@@ -33,11 +33,15 @@ public class CameraFollow : MonoBehaviour
         this.cam = GetComponent<Camera>();
         this.camHalfH = this.cam.orthographicSize;
         this.camHalfW = this.camHalfH * cam.aspect;
+
+        this.follow = GameObject.Find("Player");
     }
 
     // Use this for initialization
     void Start()
     {
+        if (!this.follow)
+            Debug.LogWarning("Error objeto a seguir no encontrado");
         GameObject min = GameObject.Find("AxisMinCamera");
         GameObject max = GameObject.Find("AxisMaxCamera");
         if (!min || !max)

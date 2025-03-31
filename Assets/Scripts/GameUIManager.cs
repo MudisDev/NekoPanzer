@@ -50,7 +50,7 @@ public class GameUIManager : MonoBehaviour
      string UpdateNameScene()
     {
         string nameScene = "";
-        Debug.Log($"updatenaemscene -> {ChangeScene.sharedInstance.GetCurrentScene()}");
+        //Debug.Log($"updatenaemscene -> {ChangeScene.sharedInstance.GetCurrentScene()}");
         switch (ChangeScene.sharedInstance.GetCurrentScene())
         {
             case "Level1":

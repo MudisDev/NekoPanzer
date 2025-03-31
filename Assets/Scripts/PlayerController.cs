@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 playerDirection;
     private Vector2 playerVelocity;
+    private Vector2 startPosition;
 
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
@@ -33,6 +34,10 @@ public class PlayerController : MonoBehaviour
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.boxCollider = GetComponent<BoxCollider2D>();
 
+        this.startPosition = this.transform.position;
+        
+
+
         if (sharedInstance != null && sharedInstance != this)
         {
             Destroy(gameObject);
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
         }
 
         sharedInstance = this;
-        DontDestroyOnLoad(gameObject);
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,6 +53,8 @@ public class PlayerController : MonoBehaviour
         this.playerVelocity = Vector2.zero;
         this.playerDirection = new Vector2(0, 1);
         this.canShoot = true;
+
+        this.transform.position = this.startPosition;
     }
 
     // Update is called once per frame
