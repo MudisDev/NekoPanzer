@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.4528302, g: 0.16874333, b: 0.16874333, a: 1}
   m_FlipX: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   speed: 5
   ammoPrefab: {fileID: 2133177825938633761, guid: e6ccaab53292d8e4992f48cf706db460, type: 3}
   playerLife: 100
-  damage: 0
-  shootSpeed: 0
-  shootCooldown: 0
+  damage: 20
+  shootSpeed: 25
+  shootCooldown: 0.1
+  maxShoots: 2
