@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float shootSpeed;
     [SerializeField] float shootCooldown;
+    [SerializeField] int maxShoots;
+    private int currentShoots;
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
         this.boxCollider = GetComponent<BoxCollider2D>();
 
         this.startPosition = this.transform.position;
-        
+
 
 
         if (sharedInstance != null && sharedInstance != this)
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
         this.playerVelocity = Vector2.zero;
         this.playerDirection = new Vector2(0, 1);
         this.canShoot = true;
+        this.currentShoots = 0;
 
         this.transform.position = this.startPosition;
     }
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame)
             return;
-        if (Input.GetKeyDown(KeyCode.Space) && this.canShoot)
+        if (Input.GetKeyDown(KeyCode.Space) && this.canShoot && this.currentShoots < this.maxShoots)
         {
             this.canShoot = false;
             StartCoroutine(Shoot());
@@ -153,6 +156,8 @@ public class PlayerController : MonoBehaviour
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");
             newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
             newAmmoPrefab.GetComponent<AmmoController>().SetShootSpeed(this.shootSpeed);
+            newAmmoPrefab.GetComponent<AmmoController>().SetPlayerController(this);
+            this.currentShoots++;
         }
         else
             Debug.LogError("ammoPrefab no asinado");
@@ -184,5 +189,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Sand"))
             this.speed *= 2;
+    }
+
+    public void SetCurrentShoots()
+    {
+        this.currentShoots--;
+        Debug.Log($"Disparos actuales -> {this.currentShoots}");
     }
 }

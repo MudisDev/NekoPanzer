@@ -11,12 +11,13 @@ public class AmmoController : MonoBehaviour
     Rigidbody2D rgbd;
     [SerializeField] float shootSpeed = 1;
     //private float shootSpeed = 1;
-    [SerializeField] AmmoControllerEnum typeSubject;
+    [SerializeField] AmmoControllerEnum fireBy;
 
     string boderLayer = "Border";
 
     private int damage;
     private Vector2 shootDirection;
+    private PlayerController playerController;
 
     void Awake()
     {
@@ -55,32 +56,40 @@ public class AmmoController : MonoBehaviour
         if (collision.gameObject.CompareTag(this.boderLayer))
         {
             //Debug.Log($"chocado Bv");
-            Destroy(gameObject);
+            DestroyAmmo();
         }
 
-
-        if (collision.gameObject.CompareTag("PlayerTag") && this.typeSubject == AmmoControllerEnum.turret)
+        if (collision.gameObject.CompareTag("PlayerTag") && this.fireBy == AmmoControllerEnum.turret)
         {
             PlayerController.sharedInstance.SetLife(this.damage);
-            Destroy(gameObject);
+            DestroyAmmo();
         }
 
-        if (collision.gameObject.CompareTag("DestructibleObjectTag") && this.typeSubject == AmmoControllerEnum.player)
+        if (collision.gameObject.CompareTag("DestructibleObjectTag") && this.fireBy == AmmoControllerEnum.player)
         {
             collision.gameObject.GetComponent<DestroyableObject>().SetObjectLife(this.damage);
-            Destroy(gameObject);
+            DestroyAmmo();
         }
+    }
+
+    public void DestroyAmmo()
+    {
+        if (this.fireBy == AmmoControllerEnum.player)
+        {
+            this.playerController.SetCurrentShoots();
+        }
+        Destroy(gameObject);
     }
 
     public void SetEnum(string opcion)
     {
         if (opcion == AmmoControllerEnum.turret.ToString())
         {
-            this.typeSubject = AmmoControllerEnum.turret;
+            this.fireBy = AmmoControllerEnum.turret;
         }
         else if (opcion == AmmoControllerEnum.player.ToString())
         {
-            this.typeSubject = AmmoControllerEnum.player;
+            this.fireBy = AmmoControllerEnum.player;
         }
     }
 
@@ -93,5 +102,10 @@ public class AmmoController : MonoBehaviour
     {
         this.shootSpeed = speed;
         this.shootSpeed = math.clamp(this.shootSpeed, 0, 10);
+    }
+
+    public void SetPlayerController(PlayerController playerController)
+    {
+        this.playerController = playerController;
     }
 }
