@@ -62,6 +62,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TurretMove"",
+                    ""type"": ""Value"",
+                    ""id"": ""71e27ec6-a67a-4961-b882-ca0f29347d35"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4345cfce-cbbd-415d-97a8-8dff0bba59ff"",
+                    ""path"": ""<DualShockGamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurretMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         m_Gameplay_Action = m_Gameplay.FindAction("Action", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_TurretMove = m_Gameplay.FindAction("TurretMove", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -278,6 +299,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Pause;
     private readonly InputAction m_Gameplay_Action;
     private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_TurretMove;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -286,6 +308,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputAction @Action => m_Wrapper.m_Gameplay_Action;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+        public InputAction @TurretMove => m_Wrapper.m_Gameplay_TurretMove;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -307,6 +330,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @TurretMove.started += instance.OnTurretMove;
+            @TurretMove.performed += instance.OnTurretMove;
+            @TurretMove.canceled += instance.OnTurretMove;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -323,6 +349,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @TurretMove.started -= instance.OnTurretMove;
+            @TurretMove.performed -= instance.OnTurretMove;
+            @TurretMove.canceled -= instance.OnTurretMove;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -346,5 +375,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnTurretMove(InputAction.CallbackContext context);
     }
 }

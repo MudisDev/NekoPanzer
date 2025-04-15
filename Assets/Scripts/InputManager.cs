@@ -21,7 +21,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Stick Input: " + input.Gameplay.Move.ReadValue<Vector2>());
+        //Debug.Log("Stick Input: " + input.Gameplay.Move.ReadValue<Vector2>());
+        Debug.Log("Turret Stick Input: " + input.Gameplay.TurretMove.ReadValue<Vector2>());
     }
 
     private void OnEnable()
@@ -37,6 +38,10 @@ public class InputManager : MonoBehaviour
     public Vector2 GetMovement()
     {
         return input.Gameplay.Move.ReadValue<Vector2>();
+    }
+    public Vector2 GetTurretMovement()
+    {
+        return input.Gameplay.TurretMove.ReadValue<Vector2>();
     }
     /*
         public bool GetJumpButton()

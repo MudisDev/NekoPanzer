@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     private Vector2 playerDirection;
+    private Vector2 turretDirection;
     private Vector2 playerVelocity;
     private Vector2 startPosition;
+
 
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
@@ -105,15 +107,18 @@ public class PlayerController : MonoBehaviour
 
     Vector2 DirectionPlayer()
     {
-        Vector2 input = InputManager.sharedInstance.GetMovement();
+        Vector2 playerMovement = InputManager.sharedInstance.GetMovement();
+        this.turretDirection = InputManager.sharedInstance.GetTurretMovement();
+
+        this.turretDirection = turretDirection.normalized;
 
         // Si el jugador está moviéndose, actualizamos la dirección para el disparo
-        if (input.magnitude > 0.1f)
+        if (playerMovement.magnitude > 0.1f)
         {
-            this.playerDirection = input.normalized;
+            this.playerDirection = playerMovement.normalized;
         }
 
-        return input;
+        return playerMovement;
     }
 
     public IEnumerator Shoot()
@@ -121,7 +126,7 @@ public class PlayerController : MonoBehaviour
         if (this.ammoPrefab != null)
         {
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
-            newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.playerDirection);
+            newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.turretDirection);
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");
             newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
             newAmmoPrefab.GetComponent<AmmoController>().SetShootSpeed(this.shootSpeed);
