@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.012908399, y: -0.24525958, z: 0}
-  m_LocalScale: {x: 0.5254, y: 0.5254, z: 0.5254}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSpeed: 5
-  typeSubject: 0
+  fireBy: 0
 --- !u!50 &8494275998013014919
 Rigidbody2D:
   serializedVersion: 5

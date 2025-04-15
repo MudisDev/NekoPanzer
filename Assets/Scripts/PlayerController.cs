@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame)
             return;
-        if (Input.GetKeyDown(KeyCode.Space) && this.canShoot && this.currentShoots < this.maxShoots)
+        if (InputManager.sharedInstance.GetAttackButton() && this.canShoot && this.currentShoots < this.maxShoots)
+        //if (Input.GetKeyDown(KeyCode.Space) && this.canShoot && this.currentShoots < this.maxShoots)
         {
             this.canShoot = false;
             StartCoroutine(Shoot());
@@ -104,47 +105,15 @@ public class PlayerController : MonoBehaviour
 
     Vector2 DirectionPlayer()
     {
-        Vector2 movement = Vector2.zero;
+        Vector2 input = InputManager.sharedInstance.GetMovement();
 
-        if (Input.GetKey(KeyCode.A))
+        // Si el jugador está moviéndose, actualizamos la dirección para el disparo
+        if (input.magnitude > 0.1f)
         {
-            movement = new Vector2(-1, 0);
-            if (this.playerDirection != new Vector2(-1, 0))
-            {
-                this.playerDirection = new Vector2(-1, 0);
-                //Debug.Log("Izquierda");
-            }
+            this.playerDirection = input.normalized;
         }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            movement = new Vector2(1, 0);
-            if (this.playerDirection != new Vector2(1, 0))
-            {
-                this.playerDirection = new Vector2(1, 0);
-                //Debug.Log("Derecha");
-            }
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            movement = new Vector2(0, 1);
-            if (this.playerDirection != new Vector2(0, 1))
-            {
-                this.playerDirection = new Vector2(0, 1);
-                //Debug.Log("Arriba");
-            }
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            movement = new Vector2(0, -1);
-            if (this.playerDirection != new Vector2(0, -1))
-            {
-                this.playerDirection = new Vector2(0, -1);
-                //Debug.Log("Abajo");
-            }
-        }
-        else
-            movement = Vector2.zero;
-        return movement;
+
+        return input;
     }
 
     public IEnumerator Shoot()
@@ -182,18 +151,23 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Sand"))
         {
-            this.speed /= 2;
+            this.speed /= 3;
         }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Sand"))
-            this.speed *= 2;
+            this.speed *= 3;
     }
 
     public void SetCurrentShoots()
     {
         this.currentShoots--;
         Debug.Log($"Disparos actuales -> {this.currentShoots}");
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return this.transform.position;
     }
 }

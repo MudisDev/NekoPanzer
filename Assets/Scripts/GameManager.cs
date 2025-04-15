@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if (InputManager.sharedInstance.GetPauseButton())
-        if (Input.GetKeyDown(KeyCode.P))
+        if (InputManager.sharedInstance.GetPauseButton())
+        //if (Input.GetKeyDown(KeyCode.P))
             TogglePause();
     }
     public void StartGame()

@@ -70,6 +70,11 @@ public class AmmoController : MonoBehaviour
             collision.gameObject.GetComponent<DestroyableObject>().SetObjectLife(this.damage);
             DestroyAmmo();
         }
+        if (collision.gameObject.CompareTag("TurretTag") && this.fireBy == AmmoControllerEnum.player)
+        {
+            collision.gameObject.GetComponent<TurretController>().SetParalyzedTurret();
+            DestroyAmmo();
+        }
     }
 
     public void DestroyAmmo()

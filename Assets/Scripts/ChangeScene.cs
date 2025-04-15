@@ -12,6 +12,8 @@ public class ChangeScene : MonoBehaviour
 {
     public static ChangeScene sharedInstance;
 
+    private SpriteRenderer spr;
+
     [SerializeField] Scenes tarjetScene;
     //[SerializeField] Vector2 fixExitPosition;
 
@@ -21,6 +23,7 @@ public class ChangeScene : MonoBehaviour
     private void Awake()
     {
          sharedInstance = this;
+         this.spr = GetComponent<SpriteRenderer>();
         //this.exitPosition = this.gameObject.transform.position.x + this.fixExitPosition.x; 
     }
 
@@ -28,7 +31,8 @@ public class ChangeScene : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
             //if (this.knockingDoor && InputManager.sharedInstance.GetActionButton() && PlayerController.sharedInstance.GetIsTouchingTheGround())
-            if (this.knockingDoor && Input.GetKeyDown(KeyCode.E))
+            //if (this.knockingDoor && Input.GetKeyDown(KeyCode.E))
+            if (this.knockingDoor && InputManager.sharedInstance.GetActionButton())
                 ChangeSceneNow();
 
 
@@ -42,6 +46,7 @@ public class ChangeScene : MonoBehaviour
         if (collision.CompareTag("PlayerTag"))
         {
             this.knockingDoor = true;
+            this.spr.color = Color.green;
             //TouchUIController.sharedInstance.SetActionButton(true);
         }
     }
@@ -51,6 +56,7 @@ public class ChangeScene : MonoBehaviour
         if (collision.CompareTag("PlayerTag"))
         {
             this.knockingDoor = false;
+            this.spr.color = Color.white;
             //TouchUIController.sharedInstance.SetActionButton(false);
         }
     }

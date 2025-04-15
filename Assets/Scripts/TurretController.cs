@@ -9,15 +9,19 @@ public class TurretController : MonoBehaviour
     [SerializeField] Vector2 directionShoot;
     [SerializeField] int damage;
     private Rigidbody2D rgbd;
+    private SpriteRenderer spr;
+    private bool paralyzedTurret;
 
     void Awake()
     {
         this.rgbd = GetComponent<Rigidbody2D>();
+        this.spr = GetComponent<SpriteRenderer>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.canShoot = true;
+        this.paralyzedTurret = false;
     }
 
     // Update is called once per frame
@@ -25,7 +29,7 @@ public class TurretController : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame)
             return;
-        if (this.canShoot)
+        if (this.canShoot && !this.paralyzedTurret)
         {
             this.canShoot = false;
             StartCoroutine(Shoot());
@@ -44,6 +48,7 @@ public class TurretController : MonoBehaviour
         if (this.ammoPrefab != null)
         {
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
+            //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.directionShoot);
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("turret");
             newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
@@ -55,12 +60,28 @@ public class TurretController : MonoBehaviour
         this.canShoot = true;
         //}
     }
-}
-/* public IEnumerator Kill()
+
+    public void SetParalyzedTurret()
     {
-        yield return new WaitForSeconds(1);
-        this.isHurt = false;
-        this.isAlive = false;
-        spr.color = Color.white;
-        StartCoroutine(GameOver());
-    } */
+        this.paralyzedTurret = true;
+        StartCoroutine(FreezeTurret());
+
+
+    }
+
+    public IEnumerator FreezeTurret()
+    {
+        this.spr.color = Color.blue;
+
+        yield return new WaitForSeconds(3);
+        this.paralyzedTurret = false;
+        this.spr.color = Color.white;
+    }
+
+    public Vector3 DirectionToPlayer()
+    {
+        Vector3 directionToPlayer = (PlayerController.sharedInstance.GetPlayerPosition() - this.transform.position).normalized;
+        return directionToPlayer;
+    }
+
+}
