@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 playerVelocity;
     private Vector2 startPosition;
 
+    [SerializeField] GameObject targetAmmo;
+    [SerializeField] float targetDistance;
 
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
@@ -103,6 +105,8 @@ public class PlayerController : MonoBehaviour
 
         // Asigna directamente la velocidad en lugar de usar AddForce
         this.rgbd.linearVelocity = this.playerVelocity;
+
+        //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x + this.targetDistance, gameObject.transform.position.y, gameObject.transform.position.z); 
     }
 
     Vector2 DirectionPlayer()
@@ -111,6 +115,9 @@ public class PlayerController : MonoBehaviour
         this.turretDirection = InputManager.sharedInstance.GetTurretMovement();
 
         this.turretDirection = turretDirection.normalized;
+
+        //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x * this.targetDistance, gameObject.transform.position.y * this.targetDistance, gameObject.transform.position.z);
+        this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
 
         // Si el jugador está moviéndose, actualizamos la dirección para el disparo
         if (playerMovement.magnitude > 0.1f)
