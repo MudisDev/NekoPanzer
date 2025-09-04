@@ -112,14 +112,18 @@ public class PlayerController : MonoBehaviour
     Vector2 DirectionPlayer()
     {
         Vector2 playerMovement = InputManager.sharedInstance.GetMovement();
-        this.turretDirection = InputManager.sharedInstance.GetTurretMovement();
+        Vector2 newTurretDirection = InputManager.sharedInstance.GetTurretMovement();
 
-        this.turretDirection = turretDirection.normalized;
+        // Solo actualiza si hay movimiento en la torreta
+        if (newTurretDirection.magnitude > 0.1f)
+        {
+            this.turretDirection = newTurretDirection.normalized;
+        }
 
-        //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x * this.targetDistance, gameObject.transform.position.y * this.targetDistance, gameObject.transform.position.z);
+        // Actualiza la posición del targetAmmo usando la última dirección válida
         this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
 
-        // Si el jugador está moviéndose, actualizamos la dirección para el disparo
+        // Si el jugador está moviéndose, actualizamos la dirección de movimiento
         if (playerMovement.magnitude > 0.1f)
         {
             this.playerDirection = playerMovement.normalized;
@@ -127,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
         return playerMovement;
     }
+
 
     public IEnumerator Shoot()
     {

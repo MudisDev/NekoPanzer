@@ -77,7 +77,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9926ee02-066c-4a8d-ab13-04dd77bf1e97"",
-                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

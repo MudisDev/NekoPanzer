@@ -176,11 +176,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dc2c6879224cbd4f903a2bb9c3c3e52, type: 3}
---- !u!1 &504297378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2656515834494902811, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
-  m_PrefabInstance: {fileID: 1407605930131555691}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,14 +1435,6 @@ PrefabInstance:
     - target: {fileID: 3829574931625192206, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6441491312262671215, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
-      propertyPath: targetAmmo
-      value: 
-      objectReference: {fileID: 504297378}
-    - target: {fileID: 6441491312262671215, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
-      propertyPath: targetDistance
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8063808594575472113, guid: 6d535afcca2790a429ea4895ade27ceb, type: 3}
       propertyPath: m_Name
