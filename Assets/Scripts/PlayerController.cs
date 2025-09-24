@@ -1,4 +1,5 @@
 using System.Collections;
+//using System.Numerics;
 using Mono.Cecil.Cil;
 using Unity.Mathematics;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject targetAmmo;
     [SerializeField] float targetDistance;
+
 
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
@@ -62,6 +64,10 @@ public class PlayerController : MonoBehaviour
         this.currentShoots = 0;
 
         this.transform.position = this.startPosition;
+
+        this.targetAmmo.transform.position = (Vector2)this.transform.position + new Vector2(0,1) * this.targetDistance;
+        this.turretDirection = new Vector2(0, 1);
+
     }
 
     // Update is called once per frame
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame)
             return;
-        if (InputManager.sharedInstance.GetAttackButton() && this.canShoot && this.currentShoots < this.maxShoots)
+        if (InputManager.sharedInstance.GetAttackButton() && this.canShoot && this.currentShoots < this.maxShoots && EstaApuntado())
         //if (Input.GetKeyDown(KeyCode.Space) && this.canShoot && this.currentShoots < this.maxShoots)
         {
             this.canShoot = false;
@@ -107,6 +113,17 @@ public class PlayerController : MonoBehaviour
         this.rgbd.linearVelocity = this.playerVelocity;
 
         //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x + this.targetDistance, gameObject.transform.position.y, gameObject.transform.position.z); 
+
+        Debug.Log("Esta apuntando => " + EstaApuntado());
+    }
+
+    bool EstaApuntado()
+    {
+        if (this.transform.position == this.targetAmmo.transform.position)
+        {
+            return false;
+        }
+        return true;
     }
 
     Vector2 DirectionPlayer()
@@ -115,7 +132,7 @@ public class PlayerController : MonoBehaviour
         Vector2 newTurretDirection = InputManager.sharedInstance.GetTurretMovement();
 
         // Solo actualiza si hay movimiento en la torreta
-        if (newTurretDirection.magnitude > 0.1f)
+        if (newTurretDirection.magnitude > 0.2f)
         {
             this.turretDirection = newTurretDirection.normalized;
         }
