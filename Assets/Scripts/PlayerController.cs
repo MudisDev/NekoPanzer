@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 startPosition;
 
     [SerializeField] GameObject targetAmmo;
+    [SerializeField] GameObject tankTurret;
+    [SerializeField] GameObject tankBody;
     [SerializeField] float targetDistance;
 
 
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         this.transform.position = this.startPosition;
 
-        this.targetAmmo.transform.position = (Vector2)this.transform.position + new Vector2(0,1) * this.targetDistance;
+        this.targetAmmo.transform.position = (Vector2)this.transform.position + new Vector2(0, 1) * this.targetDistance;
         this.turretDirection = new Vector2(0, 1);
 
     }
@@ -134,7 +136,14 @@ public class PlayerController : MonoBehaviour
         // Solo actualiza si hay movimiento en la torreta
         if (newTurretDirection.magnitude > 0.2f)
         {
+            // Normalizamos la dirección del stick derecho
             this.turretDirection = newTurretDirection.normalized;
+
+            // Calculamos el ángulo en radianes y lo convertimos a grados
+            float angle = Mathf.Atan2(this.turretDirection.y, this.turretDirection.x) * Mathf.Rad2Deg;
+
+            // Restamos 90 grados si tu sprite apunta hacia arriba por defecto (ajústalo según tu sprite)
+            this.tankTurret.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
         }
 
         // Actualiza la posición del targetAmmo usando la última dirección válida
@@ -154,7 +163,8 @@ public class PlayerController : MonoBehaviour
     {
         if (this.ammoPrefab != null)
         {
-            GameObject newAmmoPrefab = Instantiate(ammoPrefab, transform.position, Quaternion.identity);
+            Vector3 fixAmmoPosition = new Vector3 (transform.position.x, transform.position.y - 0.44f, transform.position.z);
+            GameObject newAmmoPrefab = Instantiate(ammoPrefab, fixAmmoPosition, Quaternion.identity);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.turretDirection);
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");
             newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
