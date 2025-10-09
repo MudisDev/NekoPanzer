@@ -149,11 +149,34 @@ public class PlayerController : MonoBehaviour
         // Actualiza la posición del targetAmmo usando la última dirección válida
         this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
 
+        //Vector2 playerMovement = InputManager.sharedInstance.GetMovement();
+
+        // --- ZONA MUERTA ---
+        float deadZone = 0.2f; // Puedes ajustar entre 0.1f y 0.3f según sensibilidad
+        if (playerMovement.magnitude < deadZone)
+        {
+            playerMovement = Vector2.zero;
+        }
+        else
+        {
+            // Si supera la zona muerta, normaliza para tener velocidad uniforme
+            //playerMovement = playerMovement.normalized * ((playerMovement.magnitude - deadZone) / (1 - deadZone));
+            this.playerDirection = playerMovement.normalized;
+
+            float angle = Mathf.Atan2(this.playerDirection.y, this.playerDirection.x) * Mathf.Rad2Deg;
+
+            this.tankBody.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        }
+
         // Si el jugador está moviéndose, actualizamos la dirección de movimiento
-        if (playerMovement.magnitude > 0.1f)
+        /* if (playerMovement.magnitude > 0.2f)
         {
             this.playerDirection = playerMovement.normalized;
-        }
+
+            float angle = Mathf.Atan2(this.playerDirection.y, this.playerDirection.x) * Mathf.Rad2Deg;
+
+            this.tankBody.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        } */
 
         return playerMovement;
     }
@@ -163,7 +186,7 @@ public class PlayerController : MonoBehaviour
     {
         if (this.ammoPrefab != null)
         {
-            Vector3 fixAmmoPosition = new Vector3 (transform.position.x, transform.position.y - 0.44f, transform.position.z);
+            Vector3 fixAmmoPosition = new Vector3(transform.position.x, transform.position.y - 0.44f, transform.position.z);
             GameObject newAmmoPrefab = Instantiate(ammoPrefab, fixAmmoPosition, Quaternion.identity);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.turretDirection);
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");

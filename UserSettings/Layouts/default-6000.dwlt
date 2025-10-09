@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -374,7 +374,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: eaf9ffff00fbffff
+      m_ExpandedIDs: f4faffff00fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -490,7 +490,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1650
+  m_LastSelectedObjectID: 46712
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1106,9 +1106,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -5.6980405, y: -3.3857453, z: 0}
+    m_Target: {x: -3.5109992, y: -3.35299, z: 0.007543396}
     speed: 2
-    m_Value: {x: -5.6980405, y: -3.3857453, z: 0}
+    m_Value: {x: -3.5109992, y: -3.35299, z: 0.007543396}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1158,9 +1158,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.0106
+    m_Target: 5.967782
     speed: 2
-    m_Value: 8.0106
+    m_Value: 5.967782
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_SerializedViewValues:
   - C:\Users\Martin\Desarrollo\Unity\Retrovania\Library\PlayModeViewStates\6e2bfae3e6d6fa24888fdaf3baf0f292
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 0
+  m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1012, y: 569}
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_Stats: 0
   m_SelectedSizes: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -1344,7 +1344,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/Tanks/PNG/Tracks
+    - Assets/Sprites/Tanks/PNG/Hulls_Color_A
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1354,16 +1354,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites/Tanks/PNG/Tracks
+  - Assets/Sprites/Tanks/PNG/Hulls_Color_A
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Martin\Desarrollo\Unity\NekoPanzer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 369}
-    m_SelectedIDs: d6ba0000
-    m_LastClickedID: 47830
-    m_ExpandedIDs: 00000000eab90000ecb90000eeb90000f0b90000f2b90000f4b90000f6b90000f8b90000fab90000fcb90000feb9000000ba000002ba000004ba0000
+    scrollPos: {x: 0, y: 385}
+    m_SelectedIDs: eaba0000
+    m_LastClickedID: 47850
+    m_ExpandedIDs: 00000000f6b90000f8b90000fab90000fcb90000feb9000000ba000002ba000004ba000006ba000008ba00000aba00000cba00000eba000010ba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1392,7 +1392,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: baebffff
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000eab90000ecb90000eeb90000f0b90000f2b90000f4b90000f6b90000f8b90000fab90000fcb90000feb9000000ba000002ba000004ba0000
+    m_ExpandedIDs: 00000000f6b90000f8b90000fab90000fcb90000feb9000000ba000002ba000004ba000006ba000008ba00000aba00000cba00000eba000010ba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
