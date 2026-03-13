@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
     //Activa el canvas correspondiente
     void SetGameState(GameState newGameState)
     {
+       
         // sera necesario que solo sea en el lvl1
         if (newGameState == GameState.menu)
         {
@@ -159,6 +160,8 @@ public class GameManager : MonoBehaviour
         this.currentGameState = newGameState;
 
         //AudioManager.sharedInstance.SetTrackMusic(this.currentGameState);
+
+         MenuController.sharedInstance.DetectCurrentCanva();
     }
 
     public void ExitGame()

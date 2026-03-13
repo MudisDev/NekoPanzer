@@ -128,55 +128,42 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
+    private float bodyAngle; // fuera de la función, como variable de clase
+
     Vector2 DirectionPlayer()
     {
         Vector2 playerMovement = InputManager.sharedInstance.GetMovement();
         Vector2 newTurretDirection = InputManager.sharedInstance.GetTurretMovement();
 
-        // Solo actualiza si hay movimiento en la torreta
+        // --- Rotación de la torreta (esto está bien como lo tienes) ---
         if (newTurretDirection.magnitude > 0.2f)
         {
-            // Normalizamos la dirección del stick derecho
             this.turretDirection = newTurretDirection.normalized;
+            float targetAngle = Mathf.Atan2(this.turretDirection.y, this.turretDirection.x) * Mathf.Rad2Deg;
 
-            // Calculamos el ángulo en radianes y lo convertimos a grados
-            float angle = Mathf.Atan2(this.turretDirection.y, this.turretDirection.x) * Mathf.Rad2Deg;
+            float smoothAngle = Mathf.LerpAngle(
+                this.tankTurret.transform.eulerAngles.z,
+                targetAngle - 90f,
+                Time.deltaTime * 15f
+            );
 
-            // Restamos 90 grados si tu sprite apunta hacia arriba por defecto (ajústalo según tu sprite)
-            this.tankTurret.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+            this.tankTurret.transform.rotation = Quaternion.Euler(0, 0, smoothAngle);
         }
 
-        // Actualiza la posición del targetAmmo usando la última dirección válida
+        // --- Movimiento y rotación del cuerpo ---
+        float deadZone = 0.2f;
+        if (playerMovement.magnitude > deadZone)
+        {
+            this.playerDirection = playerMovement.normalized;
+            float targetAngle = Mathf.Atan2(this.playerDirection.y, this.playerDirection.x) * Mathf.Rad2Deg - 90f;
+
+            // Aquí sí usamos bodyAngle como acumulador del ángulo actual
+            bodyAngle = Mathf.LerpAngle(bodyAngle, targetAngle, Time.deltaTime * 15f); // 5f se siente fluido sin ser lento
+            this.tankBody.transform.rotation = Quaternion.Euler(0, 0, bodyAngle);
+        }
+
+        // Actualiza posición del targetAmmo
         this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
-
-        //Vector2 playerMovement = InputManager.sharedInstance.GetMovement();
-
-        // --- ZONA MUERTA ---
-        float deadZone = 0.2f; // Puedes ajustar entre 0.1f y 0.3f según sensibilidad
-        if (playerMovement.magnitude < deadZone)
-        {
-            playerMovement = Vector2.zero;
-        }
-        else
-        {
-            // Si supera la zona muerta, normaliza para tener velocidad uniforme
-            //playerMovement = playerMovement.normalized * ((playerMovement.magnitude - deadZone) / (1 - deadZone));
-            this.playerDirection = playerMovement.normalized;
-
-            float angle = Mathf.Atan2(this.playerDirection.y, this.playerDirection.x) * Mathf.Rad2Deg;
-
-            this.tankBody.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
-        }
-
-        // Si el jugador está moviéndose, actualizamos la dirección de movimiento
-        /* if (playerMovement.magnitude > 0.2f)
-        {
-            this.playerDirection = playerMovement.normalized;
-
-            float angle = Mathf.Atan2(this.playerDirection.y, this.playerDirection.x) * Mathf.Rad2Deg;
-
-            this.tankBody.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
-        } */
 
         return playerMovement;
     }
