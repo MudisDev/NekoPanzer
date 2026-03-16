@@ -115,13 +115,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13678256061082065}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.015794551, y: 0, z: 0, w: 0.9998753}
   m_LocalPosition: {x: 0, y: -0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3829574931625192206}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.81, y: 0, z: 0}
 --- !u!212 &2657382199111350827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 9017651160234842202}
   - component: {fileID: 941676295679869886}
   - component: {fileID: 6744441537480421177}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hull_01_0
   m_TagString: PlayerTag
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 6881452088504622605}
   - component: {fileID: 1941354691872652128}
   - component: {fileID: 6441491312262671215}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Player
   m_TagString: PlayerTag
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8063808594575472113}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

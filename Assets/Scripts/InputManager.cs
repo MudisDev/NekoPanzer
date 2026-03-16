@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         //Debug.Log("Stick Input: " + input.Gameplay.Move.ReadValue<Vector2>());
-        Debug.Log("Turret Stick Input: " + input.Gameplay.TurretMove.ReadValue<Vector2>());
+        //Debug.Log("Turret Stick Input: " + input.Gameplay.TurretMove.ReadValue<Vector2>());
     }
 
     private void OnEnable()

@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
         //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x + this.targetDistance, gameObject.transform.position.y, gameObject.transform.position.z); 
 
-        Debug.Log("Esta apuntando => " + EstaApuntado());
+        //Debug.Log("Esta apuntando => " + EstaApuntado());
     }
 
     bool EstaApuntado()
@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
     public void SetCurrentShoots()
     {
         this.currentShoots--;
-        Debug.Log($"Disparos actuales -> {this.currentShoots}");
+        //Debug.Log($"Disparos actuales -> {this.currentShoots}");
     }
 
     public Vector3 GetPlayerPosition()
