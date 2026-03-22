@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "GameInput",
     "maps": [
         {
@@ -65,6 +66,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7f1ec772-359d-43cb-a7e0-d388ba30684b",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5ddccc6d-e2e7-4ef4-8159-5ec090708c77",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -78,6 +90,17 @@
                     "name": "",
                     "id": "bfb4a6d5-f76e-4e6f-97e5-f6f4eb292896",
                     "path": "<DualShockGamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88bfac02-fa0f-473d-81c2-40e75b7895b1",
+                    "path": "<XInputController>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -111,6 +134,17 @@
                     "name": "",
                     "id": "8f90c8e6-dd13-4d19-bdb1-04f5c0c4738c",
                     "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "842335d7-b888-49ba-9319-2803fc9444b0",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -186,8 +220,30 @@
                 },
                 {
                     "name": "",
+                    "id": "5a503c71-8bd7-44cc-97d8-6ae254c0732a",
+                    "path": "<XInputController>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4345cfce-cbbd-415d-97a8-8dff0bba59ff",
                     "path": "<DualShockGamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurretMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3bfb2b9c-fbba-48ce-b785-97d156c58563",
+                    "path": "<XInputController>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
