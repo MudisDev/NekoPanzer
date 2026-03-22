@@ -11,6 +11,7 @@ public class GameUIManager : MonoBehaviour
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
     [SerializeField] TextMeshProUGUI nameScene;
+    [SerializeField] TextMeshProUGUI totalEnemiesScene;
 
     private void Awake()
     {
@@ -22,8 +23,8 @@ public class GameUIManager : MonoBehaviour
     {
         if (!this.HealthBar)
             Debug.LogWarning("Error, HealtBar no asignado");
-        
-        
+
+
     }
 
     // Update is called once per frame
@@ -34,6 +35,20 @@ public class GameUIManager : MonoBehaviour
         UpdateHealthBar();
         DisableFillHealtBar();
         this.nameScene.text = UpdateNameScene();
+        UpdateTotalEnemies();
+
+    }
+
+    public void UpdateTotalEnemies()
+    {
+        if (GameObject.FindGameObjectsWithTag("EnemyTag").Length > 0)
+        {
+            this.totalEnemiesScene.text = "Enemigos: " + GameObject.FindGameObjectsWithTag("EnemyTag").Length.ToString();
+        }
+        else
+        {
+             this.totalEnemiesScene.text = "Enemigos: 0";
+        }
     }
 
     public void UpdateHealthBar()
@@ -47,7 +62,7 @@ public class GameUIManager : MonoBehaviour
             this.FillHealthBar.enabled = false;
     }
 
-     string UpdateNameScene()
+    string UpdateNameScene()
     {
         string nameScene = "";
         //Debug.Log($"updatenaemscene -> {ChangeScene.sharedInstance.GetCurrentScene()}");

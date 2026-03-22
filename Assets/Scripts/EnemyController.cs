@@ -247,6 +247,7 @@ public class EnemyController : MonoBehaviour
         enemyRigidBody.linearVelocity = Vector2.zero;
         this.spriteExplosion.enabled = true;
         yield return new WaitForSeconds(3);
+        GamePlayController.sharedInstance.SetTotalEnemies();
         Destroy(gameObject);
     }
 
@@ -257,11 +258,11 @@ public class EnemyController : MonoBehaviour
     void OnDrawGizmos()
     {
         // Zona de patrullaje
-        /* Gizmos.color = Color.green;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(
             Application.isPlaying ? (Vector3)initialPosition : transform.position,
             patrolRadius
-        ); */
+        );
 
         // Zona de detección
         Gizmos.color = Color.red;

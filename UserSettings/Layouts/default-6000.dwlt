@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 118
+  controlID: 62
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 72
+  controlID: 63
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 63
+  controlID: 64
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_SerializedViewValues:
   - C:\Users\Martin\Desarrollo\Unity\Retrovania\Library\PlayModeViewStates\6e2bfae3e6d6fa24888fdaf3baf0f292
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 1013, y: 570}
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_EnterPlayModeBehavior: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 01000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -428,7 +428,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: b8e4ffff0afaffff00fbffff7eb60000
+      m_ExpandedIDs: 748effffee8efffff88effff5c8fffff6092ffffc6f9ffffd8f9ffffeaf9ffff3afaffff4afaffff5cfaffff6cfaffff7cfaffff8efaffff94faffff9efaffff00fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -544,7 +544,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1526
+  m_LastSelectedObjectID: -40054
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1160,9 +1160,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -2.4545312, y: 2.754137, z: -0.035711084}
+    m_Target: {x: 1.6046493, y: 3.915679, z: 4.387151}
     speed: 2
-    m_Value: {x: -2.4545312, y: 2.754137, z: -0.035711084}
+    m_Value: {x: 1.6046493, y: 3.915679, z: 4.387151}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1212,9 +1212,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.022601
+    m_Target: 22.918667
     speed: 2
-    m_Value: 13.022601
+    m_Value: 22.918667
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1295,7 +1295,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1305,16 +1305,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Martin\Desarrollo\Unity\NekoPanzer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 127}
-    m_SelectedIDs: 42ba0000
-    m_LastClickedID: 47682
-    m_ExpandedIDs: 0000000058ba00005aba00005cba00005eba000060ba000062ba000064ba000066ba000068ba00006aba00006cba00006eba000070ba000072ba000074ba000076ba000078ba0000
+    m_SelectedIDs: 8abb0000
+    m_LastClickedID: 48010
+    m_ExpandedIDs: 000000003cba00003eba000040ba000042ba000044ba000046ba000048ba00004aba00004cba00004eba000050ba000052ba000054ba000056ba000058ba00005aba00005cba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1343,7 +1343,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: baebffff
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000058ba00005aba00005cba00005eba000060ba000062ba000064ba000066ba000068ba00006aba00006cba00006eba000070ba000072ba000074ba000076ba000078ba0000
+    m_ExpandedIDs: 000000003cba00003eba000040ba000042ba000044ba000046ba000048ba00004aba00004cba00004eba000050ba000052ba000054ba000056ba000058ba00005aba00005cba0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1369,10 +1369,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 8a63ffff
+    m_LastClickedInstanceID: -40054
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300009872000022650000f47b0000b05e0000da600000be5e0000b45e0000b25e00000eb700000000000018bb0000feab00002eb3000052f100004e5f000054660000a065000058640000a06400004a600000328b0000fe6400004aa500005c6700009aaf0000cc5c0100d45c01000a5d01000e5d010014ae00005cc1000066ae000046c9000060c900007cc900008cb20000a0b20000c0b10000aeb100007e0c0100321501007a1b0100fa220100b6080100cabb00003cbc000038bc00000cc3000014c300001cc3000022c300005cc3000040c3000052c4000056c400005ac400005ec4000062c4000066c400008abc000080bc0000
+    m_ExpandedInstanceIDs: c62300009872000022650000f47b0000b05e0000da600000be5e0000b45e0000b25e00000eb700000000000018bb0000feab00002eb3000052f100004e5f000054660000a065000058640000a06400004a600000328b0000fe6400004aa500005c6700009aaf0000cc5c0100d45c01000a5d01000e5d010014ae00005cc1000066ae000046c9000060c900007cc900008cb20000a0b20000c0b10000aeb100007e0c0100321501007a1b0100fa220100b6080100cabb00003cbc000038bc00000cc3000014c300001cc3000022c300005cc3000040c3000052c4000056c400005ac400005ec4000062c4000066c400008abc000080bc0000b8c10000bcc10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

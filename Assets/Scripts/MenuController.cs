@@ -12,7 +12,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject firstButtonCanvasMenu;
     [SerializeField] GameObject firstButtonCanvasPause;
     [SerializeField] GameObject firstButtonCanvasGameOver;
-    //[SerializeField] GameObject firstButtonCanvasWin;
+    [SerializeField] GameObject firstButtonCanvasWin;
     //[SerializeField] EventSystem eventmenu;
     private EventSystem eventmenu;
 
@@ -62,6 +62,9 @@ public class MenuController : MonoBehaviour
                 break;
             case GameState.gameOver:
                 this.eventmenu.SetSelectedGameObject(this.firstButtonCanvasGameOver);
+                break;
+            case GameState.win:
+                this.eventmenu.SetSelectedGameObject(this.firstButtonCanvasWin);
                 break;
             default:
                 this.eventmenu.SetSelectedGameObject(null);
