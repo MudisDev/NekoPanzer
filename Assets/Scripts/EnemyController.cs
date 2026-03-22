@@ -13,7 +13,8 @@ public class EnemyController : MonoBehaviour
 
     [Header("Patrol")]
     [SerializeField] float patrolRadius = 3f;
-    [SerializeField] float patrolChangeTime = 2f;
+    // [SerializeField] float patrolChangeTime = 2f;
+    [SerializeField] Transform[] transforms;
 
     private bool isEnemyAlive;
     private Rigidbody2D enemyRigidBody;
@@ -21,14 +22,24 @@ public class EnemyController : MonoBehaviour
     private Vector2 initialPosition;
     private Vector2 patrolTarget;
     private float patrolTimer;
-
     private Transform playerTarget;
+    private SpriteRenderer tankBody;
+
+    private bool canEnemyShoot;
 
     [SerializeField] SpriteRenderer spriteExplosion;
+    [SerializeField] GameObject ammoPrefab;
+    [SerializeField] int enemyDamage;
+
+    private Transform initialPoint;
+    private int currentPoint = -1;
+
+    private float bodyAngleEnemy;
 
     void Awake()
     {
-        enemyRigidBody = GetComponent<Rigidbody2D>();
+        this.enemyRigidBody = GetComponent<Rigidbody2D>();
+        this.tankBody = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -41,11 +52,19 @@ public class EnemyController : MonoBehaviour
         if (this.spriteExplosion == null)
             Debug.LogError("Error, sprite de explisio no asignado Bv.");
 
+        if (this.spriteExplosion == null)
+            Debug.LogError("Error, sprite de tanque enemigo no asignado Bv.");
+
         this.spriteExplosion.enabled = false;
+
+        this.initialPoint = this.transforms[0];
+
 
         initialPosition = transform.position;
 
-        SetNewPatrolPoint();
+        //SetNewPatrolPoint();
+
+        this.canEnemyShoot = true;
     }
 
     void Update()
@@ -111,38 +130,101 @@ public class EnemyController : MonoBehaviour
         {
             Vector2 back = (initialPosition - (Vector2)transform.position).normalized;
             enemyRigidBody.linearVelocity = back * enemyspeed;
+            Girar(direction);
+
             return;
         }
 
         // Perseguir jugador
         enemyRigidBody.linearVelocity = direction * enemyspeed;
+        Girar(direction);
+
+
+        if (this.isEnemyAlive && this.canEnemyShoot)
+        {
+            this.canEnemyShoot = false;
+
+            StartCoroutine(EnemyShoot());
+        }
+
+
+
+    }
+
+    public IEnumerator EnemyShoot()
+    {
+        //while (true)
+        //{
+        yield return new WaitForSeconds(0.5f);
+        //this.disparos++;
+        //Debug.Log($"Disparo no. -> {disparos}");
+        Debug.Log($"posicion del player -> {DirectionToPlayer()}");
+        if (this.ammoPrefab != null)
+        {
+            //GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.ammoOrigin.transform.position, Quaternion.identity);
+            GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.transform.position, Quaternion.identity);
+            //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());
+            //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.directionShoot);
+            newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());
+            newAmmoPrefab.GetComponent<AmmoController>().SetEnum("turret");
+            newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.enemyDamage);
+        }
+
+        else
+            Debug.LogError("ammoPrefab no asinado");
+
+        this.canEnemyShoot = true;
+        //}
     }
 
     void Patrol()
     {
-        patrolTimer += Time.deltaTime;
+        if (transforms.Length == 0) return;
 
-        // Cambiar punto de patrullaje cada cierto tiempo
-        if (patrolTimer >= patrolChangeTime)
-        {
-            SetNewPatrolPoint();
-            patrolTimer = 0f;
-        }
+        if (currentPoint == -1)
+            currentPoint = 0;
 
-        Vector2 direction = (patrolTarget - (Vector2)transform.position).normalized;
+        Transform target = transforms[currentPoint];
+
+        Vector2 direction = (target.position - transform.position).normalized;
+
         enemyRigidBody.linearVelocity = direction * enemyspeed;
+        Girar(direction);
 
-        // Si llega cerca del punto, generar otro
-        if (Vector2.Distance(transform.position, patrolTarget) < 0.5f)
+        float distance = Vector2.Distance(transform.position, target.position);
+
+        if (distance < 0.2f)
         {
-            SetNewPatrolPoint();
+            currentPoint++;
+
+            if (currentPoint >= transforms.Length)
+                currentPoint = 0;
         }
     }
 
-    void SetNewPatrolPoint()
+    private void Girar(Vector2 enemyDirection)
+    {
+        //float deadZone = 0.2f;
+        //if (playerMovement.magnitude > deadZone)
+        //{
+        //this.playerDirection = playerMovement.normalized;
+        float targetAngle = Mathf.Atan2(enemyDirection.y, enemyDirection.x) * Mathf.Rad2Deg - 90f;
+
+        // Aquí sí usamos bodyAngle como acumulador del ángulo actual
+        this.bodyAngleEnemy = Mathf.LerpAngle(this.bodyAngleEnemy, targetAngle, Time.deltaTime * 15f); // 5f se siente fluido sin ser lento
+        this.tankBody.transform.rotation = Quaternion.Euler(0, 0, bodyAngleEnemy);
+        //}
+
+        // Actualiza posición del targetAmmo
+        //this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
+
+        // return playerMovement;
+    }
+
+    /* void SetNewPatrolPoint()
     {
         patrolTarget = initialPosition + Random.insideUnitCircle * patrolRadius;
-    }
+    } */
 
     // =========================
     // 💥 VIDA
@@ -175,11 +257,11 @@ public class EnemyController : MonoBehaviour
     void OnDrawGizmos()
     {
         // Zona de patrullaje
-        Gizmos.color = Color.green;
+        /* Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(
             Application.isPlaying ? (Vector3)initialPosition : transform.position,
             patrolRadius
-        );
+        ); */
 
         // Zona de detección
         Gizmos.color = Color.red;
