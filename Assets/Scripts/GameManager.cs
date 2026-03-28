@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.sharedInstance.GetPauseButton())
+        if (InputManager.sharedInstance.GetPauseButton() && this.currentGameState == GameState.inGame)
         //if (Input.GetKeyDown(KeyCode.P))
             TogglePause();
     }
