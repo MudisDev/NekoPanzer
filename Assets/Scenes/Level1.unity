@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: 'transforms.Array.data[2]'
       value: 
       objectReference: {fileID: 1113205492}
+    - target: {fileID: 7291349281578615574, guid: 1053fa4839cb39e45bf0f71890cd13d2, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] SpriteRenderer spriteExplosion;
     [SerializeField] GameObject ammoPrefab;
     [SerializeField] int enemyDamage;
+    private BoxCollider2D boxCollider;
 
     private Transform initialPoint;
     private int currentPoint = -1;
@@ -40,6 +41,7 @@ public class EnemyController : MonoBehaviour
     {
         this.enemyRigidBody = GetComponent<Rigidbody2D>();
         this.tankBody = GetComponent<SpriteRenderer>();
+        this.boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Start()
@@ -245,7 +247,11 @@ public class EnemyController : MonoBehaviour
     public IEnumerator ActiveExplosion()
     {
         enemyRigidBody.linearVelocity = Vector2.zero;
+        enemyRigidBody.freezeRotation = true;
+        this.boxCollider.excludeLayers = playerLayer;
+
         this.spriteExplosion.enabled = true;
+
         yield return new WaitForSeconds(3);
         GamePlayController.sharedInstance.SetTotalEnemies();
         Destroy(gameObject);
