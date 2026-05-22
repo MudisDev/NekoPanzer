@@ -19,6 +19,7 @@ public class TurretController : MonoBehaviour
 
     private Vector2 turretDirection;
     [SerializeField] GameObject turretGun;
+ 
 
     [SerializeField] LayerMask capajugador;
 
@@ -87,7 +88,7 @@ public class TurretController : MonoBehaviour
         Debug.Log($"posicion del player -> {DirectionToPlayer()}");
         if (this.ammoPrefab != null)
         {
-            GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.ammoOrigin.transform.position, Quaternion.identity);
+            GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.ammoOrigin.transform.position, this.turretGun.transform.rotation);
             //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());
             //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.directionShoot);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());

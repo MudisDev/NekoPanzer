@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] SpriteRenderer spriteExplosion;
     [SerializeField] GameObject ammoPrefab;
+    [SerializeField] GameObject target;
     [SerializeField] int enemyDamage;
     private BoxCollider2D boxCollider;
 
@@ -164,7 +165,8 @@ public class EnemyController : MonoBehaviour
         if (this.ammoPrefab != null)
         {
             //GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.ammoOrigin.transform.position, Quaternion.identity);
-            GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.transform.position, Quaternion.identity);
+            //GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.transform.position, this.tankBody.transform.rotation);
+            GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.target.transform.position, this.tankBody.transform.rotation);
             //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());
             //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.directionShoot);
             newAmmoPrefab.GetComponent<AmmoController>().SetDirection(DirectionToPlayer());

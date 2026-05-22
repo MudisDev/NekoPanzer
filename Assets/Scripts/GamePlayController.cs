@@ -32,7 +32,7 @@ public class GamePlayController : MonoBehaviour
     void Update()
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame) return;
-        Debug.Log($"Nuero de enemigos en escena -> {this.totalEnemies}");
+        //Debug.Log($"Nuero de enemigos en escena -> {this.totalEnemies}");
 
         if (this.totalEnemies <= 0)
         {

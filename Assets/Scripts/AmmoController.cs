@@ -33,6 +33,7 @@ public class AmmoController : MonoBehaviour
     void Update()
     {
         //Debug.Log($"TypeSbject -> {this.typeSubject}");
+        //Debug.Log($"Rotacion Ammo -> {gameObject.transform.rotation}");
     }
 
     public void SetDirection(Vector2 direction)
@@ -43,6 +44,12 @@ public class AmmoController : MonoBehaviour
             this.rgbd.linearVelocity = this.shootDirection * this.shootSpeed;
         }
     }
+
+    public void SetRotationZ(float axisZ)
+    {
+
+    }
+
     private void FixedUpdate()
     {
         // Si el juego no está en estado inGame, detener el movimiento

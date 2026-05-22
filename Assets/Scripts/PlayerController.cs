@@ -2,6 +2,7 @@ using System.Collections;
 //using System.Numerics;
 //using Mono.Cecil.Cil;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rgbd;
     [SerializeField] float speed;
     [SerializeField] GameObject ammoPrefab;
+    [SerializeField] GameObject ammoOrigin;
 
     [SerializeField] int playerLife;
     [SerializeField] int damage;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject tankTurret;
     [SerializeField] GameObject tankBody;
     [SerializeField] float targetDistance;
+    private Animator animatorTrack;
 
 
     const int MAXLIFE = 100;
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour
         this.rgbd = GetComponent<Rigidbody2D>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.boxCollider = GetComponent<BoxCollider2D>();
+        this.animatorTrack = GetComponent<Animator>();
 
         this.startPosition = this.transform.position;
 
@@ -67,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         this.transform.position = this.startPosition;
 
-        this.targetAmmo.transform.position = (Vector2)this.transform.position + new Vector2(0, 1) * this.targetDistance;
+        this.targetAmmo.transform.position = (Vector2)this.tankTurret.transform.position + new Vector2(0, 1) * this.targetDistance;
         this.turretDirection = new Vector2(0, 1);
 
     }
@@ -89,7 +93,13 @@ public class PlayerController : MonoBehaviour
             DisablePlayer();
             StartCoroutine(GameOver());
         }
+
+        //this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
+
+
     }
+
+
 
     public void DisablePlayer()
     {
@@ -117,6 +127,9 @@ public class PlayerController : MonoBehaviour
         //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x + this.targetDistance, gameObject.transform.position.y, gameObject.transform.position.z); 
 
         //Debug.Log("Esta apuntando => " + EstaApuntado());
+        Debug.Log($"turret direction -> {this.turretDirection}");
+
+        this.animatorTrack.speed = (this.playerVelocity.magnitude > 0.1f) ? 1 : 0;
     }
 
     bool EstaApuntado()
@@ -163,7 +176,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Actualiza posición del targetAmmo
-        this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
+        //this.targetAmmo.transform.position = (Vector2)this.transform.position + this.turretDirection * this.targetDistance;
+        this.targetAmmo.transform.position = (Vector2)this.tankTurret.transform.position + this.turretDirection * this.targetDistance;
 
         return playerMovement;
     }
@@ -173,9 +187,12 @@ public class PlayerController : MonoBehaviour
     {
         if (this.ammoPrefab != null)
         {
-            Vector3 fixAmmoPosition = new Vector3(transform.position.x, transform.position.y - 0.44f, transform.position.z);
-            GameObject newAmmoPrefab = Instantiate(ammoPrefab, fixAmmoPosition, Quaternion.identity);
-            newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.turretDirection);
+            Vector2 newDirection = this.ammoOrigin.transform.position - this.tankTurret.transform.position;
+            //Vector3 fixAmmoPosition = new Vector3(transform.position.x, transform.position.y - 0.44f, transform.position.z);
+            //GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.targetAmmo.transform.position, tankTurret.transform.rotation);
+            GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.ammoOrigin.transform.position, tankTurret.transform.rotation);
+            //newAmmoPrefab.GetComponent<AmmoController>().SetDirection(this.turretDirection);
+            newAmmoPrefab.GetComponent<AmmoController>().SetDirection(newDirection);
             newAmmoPrefab.GetComponent<AmmoController>().SetEnum("player");
             newAmmoPrefab.GetComponent<AmmoController>().SetDamage(this.damage);
             newAmmoPrefab.GetComponent<AmmoController>().SetShootSpeed(this.shootSpeed);
