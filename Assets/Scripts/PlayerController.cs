@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         //this.targetAmmo.transform.position = new Vector3(gameObject.transform.position.x + this.targetDistance, gameObject.transform.position.y, gameObject.transform.position.z); 
 
         //Debug.Log("Esta apuntando => " + EstaApuntado());
-        Debug.Log($"turret direction -> {this.turretDirection}");
+        //        Debug.Log($"turret direction -> {this.turretDirection}");
 
         this.animatorTrack.speed = (this.playerVelocity.magnitude > 0.1f) ? 1 : 0;
     }
@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         if (this.ammoPrefab != null)
         {
+            AudioManager.sharedInstance.PlayShoot();
             Vector2 newDirection = this.ammoOrigin.transform.position - this.tankTurret.transform.position;
             //Vector3 fixAmmoPosition = new Vector3(transform.position.x, transform.position.y - 0.44f, transform.position.z);
             //GameObject newAmmoPrefab = Instantiate(ammoPrefab, this.targetAmmo.transform.position, tankTurret.transform.rotation);

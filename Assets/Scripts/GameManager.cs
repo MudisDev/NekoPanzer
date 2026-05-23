@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
         }
         this.currentGameState = newGameState;
 
-        //AudioManager.sharedInstance.SetTrackMusic(this.currentGameState);
+        AudioManager.sharedInstance.SetTrackMusic(this.currentGameState);
 
          MenuController.sharedInstance.DetectCurrentCanva();
     }
