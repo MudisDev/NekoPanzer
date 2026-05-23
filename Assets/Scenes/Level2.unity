@@ -468,6 +468,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &423820168
 TilemapRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -513,6 +514,7 @@ TilemapRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -520,7 +522,6 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
 --- !u!1839735485 &423820169
 Tilemap:
   m_ObjectHideFlags: 0
@@ -812,17 +813,22 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 0
+  - serializedVersion: 2
+    m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 28
+  - serializedVersion: 2
+    m_RefCount: 28
     m_Data: {fileID: 11400000, guid: 42e0834b01ccc2142a8a2392ac2d400c, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 0
+  - serializedVersion: 2
+    m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 28
+  - serializedVersion: 2
+    m_RefCount: 28
     m_Data: {fileID: 4360390788417139489, guid: b32c672c57fe106428042340a8436e99, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 28
+  - serializedVersion: 2
+    m_RefCount: 28
     m_Data:
       e00: 1
       e01: 0
@@ -841,9 +847,11 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 0
+  - serializedVersion: 2
+    m_RefCount: 0
     m_Data: {r: 2.1611541e-19, g: 2.1611541e-19, b: 2.1611541e-19, a: 2.1611541e-19}
-  - m_RefCount: 28
+  - serializedVersion: 2
+    m_RefCount: 28
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1301,6 +1309,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1311560320464698932, guid: 8c6c192580d0c334cb5548e098e96ada, type: 3}
+      propertyPath: turretJoystick
+      value: 
+      objectReference: {fileID: 1350037722792641148}
+    - target: {fileID: 1311560320464698932, guid: 8c6c192580d0c334cb5548e098e96ada, type: 3}
+      propertyPath: movementJoystick
+      value: 
+      objectReference: {fileID: 1350037722792641149}
     - target: {fileID: 3087169587720144308, guid: 8c6c192580d0c334cb5548e098e96ada, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1563,6 +1579,7 @@ TilemapCollider2D:
   m_UseDelaunayMesh: 0
 --- !u!483693784 &2008683999
 TilemapRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1608,6 +1625,7 @@ TilemapRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1615,7 +1633,6 @@ TilemapRenderer:
   m_SortOrder: 0
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
 --- !u!1839735485 &2008684000
 Tilemap:
   m_ObjectHideFlags: 0
@@ -3127,13 +3144,16 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 150
+  - serializedVersion: 2
+    m_RefCount: 150
     m_Data: {fileID: 11400000, guid: 057dd9470e7d2554eaa3e4b0eaec2c3f, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 150
+  - serializedVersion: 2
+    m_RefCount: 150
     m_Data: {fileID: 21300000, guid: 188c0f388e6361d4392005c18a8ad90c, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 150
+  - serializedVersion: 2
+    m_RefCount: 150
     m_Data:
       e00: 1
       e01: 0
@@ -3152,7 +3172,8 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 150
+  - serializedVersion: 2
+    m_RefCount: 150
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -3331,6 +3352,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1c6c9e67a86c744fa0d07ff21056254, type: 3}
+--- !u!114 &1350037722792641148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2526964203664169440, guid: c1c6c9e67a86c744fa0d07ff21056254, type: 3}
+  m_PrefabInstance: {fileID: 1350037722792641147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1350037722792641149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9050867880722401943, guid: c1c6c9e67a86c744fa0d07ff21056254, type: 3}
+  m_PrefabInstance: {fileID: 1350037722792641147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1407605930131555691
 PrefabInstance:
   m_ObjectHideFlags: 0
