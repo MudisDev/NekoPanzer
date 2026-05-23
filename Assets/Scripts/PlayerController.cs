@@ -1,4 +1,6 @@
 using System.Collections;
+
+
 //using System.Numerics;
 //using Mono.Cecil.Cil;
 using Unity.Mathematics;
@@ -81,11 +83,28 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState != GameState.inGame)
             return;
-        if (InputManager.sharedInstance.GetAttackButton() && this.canShoot && this.currentShoots < this.maxShoots && EstaApuntado())
-        //if (Input.GetKeyDown(KeyCode.Space) && this.canShoot && this.currentShoots < this.maxShoots)
+        //if (InputManager.sharedInstance.GetAttackButton() && this.canShoot && this.currentShoots < this.maxShoots && EstaApuntado())
+        if (this.canShoot && this.currentShoots < this.maxShoots && EstaApuntado())
+
         {
-            this.canShoot = false;
-            StartCoroutine(Shoot());
+
+            if (InputManager.sharedInstance.GetTurretJoystickShoot())
+            {
+
+                Vector2 turretInput = InputManager.sharedInstance.GetTurretMovement();
+
+                if (turretInput.magnitude > 0.1f)
+                {
+                    this.canShoot = false;
+                    StartCoroutine(Shoot());
+                }
+            }
+            if (InputManager.sharedInstance.GetAttackButton())
+            {
+                this.canShoot = false;
+                StartCoroutine(Shoot());
+            }
+
         }
 
         if (this.playerLife <= 0)

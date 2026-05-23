@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ public class InputManager : MonoBehaviour
     [Header("Touch Controls")]
     [SerializeField] private FixedJoystick movementJoystick;
     [SerializeField] private FixedJoystick turretJoystick;
+
+    private bool turretJoystickShoot;
 
     private GameInput input;
 
@@ -27,6 +30,16 @@ public class InputManager : MonoBehaviour
     {
         //Debug.Log("Stick Input: " + input.Gameplay.Move.ReadValue<Vector2>());
         //Debug.Log("Turret Stick Input: " + input.Gameplay.TurretMove.ReadValue<Vector2>());
+    }
+
+    void FixedUpdate()
+    {
+        if (this.turretJoystick.Horizontal > 0.1f || this.turretJoystick.Vertical > 0.1f)
+        {
+            this.turretJoystickShoot = true;
+        }
+        else
+            this.turretJoystickShoot = false;
     }
 
     private void OnEnable()
@@ -66,22 +79,28 @@ public class InputManager : MonoBehaviour
         // Input del mando/teclado
         Vector2 gamepadInput = input.Gameplay.TurretMove.ReadValue<Vector2>();
 
-                if (gamepadInput.magnitude > 0.1f)
-                    return gamepadInput;
+        if (gamepadInput.magnitude > 0.1f)
+            return gamepadInput;
 
-                if (turretJoystick != null)
-                {
-                    Vector2 touchInput = new Vector2(
-                        turretJoystick.Horizontal,
-                        turretJoystick.Vertical
-                    );
+        if (this.turretJoystick != null)
+        {
+            Vector2 touchInput = new Vector2(
+                turretJoystick.Horizontal,
+                turretJoystick.Vertical
+            );
 
-                    return touchInput;
-                }
+            return touchInput;
+        }
 
-                return Vector2.zero;
+        return Vector2.zero;
 
     }
+
+public bool GetTurretJoystickShoot()
+    {
+        return this.turretJoystickShoot;
+    }
+
     /*
         public bool GetJumpButton()
         {
