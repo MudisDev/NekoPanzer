@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -218,16 +218,16 @@ MonoBehaviour:
     y: 0
     width: 1227
     height: 617
-  m_MinSize: {x: 202, y: 226}
+  m_MinSize: {x: 102, y: 126}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
   - {fileID: 13}
   - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 2
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -572,8 +572,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 285
-    y: 79
+    x: 286
+    y: 24
     width: 1225
     height: 591
   m_SerializedDataModeController:
@@ -624,7 +624,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -701,10 +701,45 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
+      - m_Data: -120334
+      - m_Data: -119196
+      - m_Data: -86076
+      - m_Data: -84484
+      - m_Data: -84452
+      - m_Data: -83078
+      - m_Data: -72060
+      - m_Data: -68180
+      - m_Data: -68064
+      - m_Data: -68058
+      - m_Data: -68048
+      - m_Data: -67798
+      - m_Data: -67132
+      - m_Data: -67010
+      - m_Data: -67000
+      - m_Data: -66844
+      - m_Data: -61854
+      - m_Data: -57434
+      - m_Data: -35458
+      - m_Data: -35190
+      - m_Data: -34526
+      - m_Data: -33880
+      - m_Data: -24100
+      - m_Data: -23472
+      - m_Data: -23350
+      - m_Data: -23340
+      - m_Data: -23200
+      - m_Data: -1614
+      - m_Data: -1598
       - m_Data: -1526
       - m_Data: -1404
       - m_Data: -1394
       - m_Data: -1386
+      - m_Data: 76116
+      - m_Data: 76176
+      - m_Data: 76208
+      - m_Data: 76404
+      - m_Data: 76414
+      - m_Data: 76674
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -790,8 +825,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 286
-    y: 24
+    x: 285
+    y: 79
     width: 1225
     height: 591
   m_SerializedDataModeController:
@@ -1378,9 +1413,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 957.4567, y: 223.35776, z: -3.1156394}
+    m_Target: {x: 1117.2194, y: 567.80273, z: -5.515872}
     speed: 2
-    m_Value: {x: 957.4567, y: 223.35776, z: -3.1156394}
+    m_Value: {x: 1117.2194, y: 567.80273, z: -5.515872}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1431,9 +1466,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 492.58356
+    m_Target: 632.9832
     speed: 2
-    m_Value: 492.58356
+    m_Value: 632.9832
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1558,7 +1593,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Joystick Pack/Prefabs
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1568,7 +1603,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Joystick Pack/Prefabs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Martin\Desarrollo\Unity\NekoPanzer
   m_LockTracker:
@@ -1577,28 +1612,28 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 127}
     m_SelectedIDs:
-    - m_Data: 54250
+    - m_Data: 52944
     m_LastClickedID:
-      m_Data: 54250
+      m_Data: 52944
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52706
-    - m_Data: 52708
-    - m_Data: 52710
-    - m_Data: 52712
-    - m_Data: 52714
-    - m_Data: 52716
-    - m_Data: 52718
-    - m_Data: 52720
-    - m_Data: 52722
-    - m_Data: 52724
-    - m_Data: 52726
-    - m_Data: 52728
-    - m_Data: 52730
-    - m_Data: 52732
-    - m_Data: 52734
-    - m_Data: 52736
-    - m_Data: 52738
+    - m_Data: 54438
+    - m_Data: 54440
+    - m_Data: 54442
+    - m_Data: 54444
+    - m_Data: 54446
+    - m_Data: 54448
+    - m_Data: 54450
+    - m_Data: 54452
+    - m_Data: 54454
+    - m_Data: 54456
+    - m_Data: 54458
+    - m_Data: 54460
+    - m_Data: 54462
+    - m_Data: 54464
+    - m_Data: 54466
+    - m_Data: 54468
+    - m_Data: 54470
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1632,23 +1667,23 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52706
-    - m_Data: 52708
-    - m_Data: 52710
-    - m_Data: 52712
-    - m_Data: 52714
-    - m_Data: 52716
-    - m_Data: 52718
-    - m_Data: 52720
-    - m_Data: 52722
-    - m_Data: 52724
-    - m_Data: 52726
-    - m_Data: 52728
-    - m_Data: 52730
-    - m_Data: 52732
-    - m_Data: 52734
-    - m_Data: 52736
-    - m_Data: 52738
+    - m_Data: 54438
+    - m_Data: 54440
+    - m_Data: 54442
+    - m_Data: 54444
+    - m_Data: 54446
+    - m_Data: 54448
+    - m_Data: 54450
+    - m_Data: 54452
+    - m_Data: 54454
+    - m_Data: 54456
+    - m_Data: 54458
+    - m_Data: 54460
+    - m_Data: 54462
+    - m_Data: 54464
+    - m_Data: 54466
+    - m_Data: 54468
+    - m_Data: 54470
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1677,9 +1712,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: -1394
+    - m_Data: 60568
     m_LastClickedEntityId:
-      m_Data: -1394
+      m_Data: 60568
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 67072
@@ -1916,7 +1951,7 @@ MonoBehaviour:
       oldMaxSizes: 
       oldSplitSize: 0
     m_HorizontalSplitter:
-      ID: 217
+      ID: 7559
       splitterInitialOffset: 0
       currentActiveSplitter: -1
       realSizes:
