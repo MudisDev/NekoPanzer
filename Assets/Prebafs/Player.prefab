@@ -301,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 4573606252558856461}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 0.1, z: 0}
+  m_LocalPosition: {x: -0.29, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -392,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 5158588781899963535}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0.29, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -482,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 5747648688147491806}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.435, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -500,7 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9017651160234842202}
   - component: {fileID: 941676295679869886}
-  - component: {fileID: 6744441537480421177}
+  - component: {fileID: 7979927475409214429}
   m_Layer: 9
   m_Name: Hull_01_0
   m_TagString: PlayerTag
@@ -583,7 +583,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &6744441537480421177
+--- !u!61 &7979927475409214429
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -617,17 +617,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.021162271, y: 0.46557164}
+  m_Offset: {x: 0, y: 0.16953124}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.325}
-    oldSize: {x: 1.68, y: 2.48}
+    oldSize: {x: 0.65625, y: 0.96875}
     newSize: {x: 1.68, y: 2.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.63487, y: 2.4813647}
+  m_Size: {x: 0.65625, y: 0.96875}
   m_EdgeRadius: 0
 --- !u!1 &8063808594575472113
 GameObject:
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0741464d5d4e6854486203795bcbe92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2.5
   ammoPrefab: {fileID: 2133177825938633761, guid: e6ccaab53292d8e4992f48cf706db460, type: 3}
   ammoOrigin: {fileID: 1712130250717821934}
   playerLife: 100
