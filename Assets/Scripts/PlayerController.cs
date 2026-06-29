@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float targetDistance;
     private Animator animatorTrack;
 
+    private bool isHidden;
+
+
 
     const int MAXLIFE = 100;
     const int MINLIFE = 0;
@@ -76,6 +79,8 @@ public class PlayerController : MonoBehaviour
         this.targetAmmo.transform.position = (Vector2)this.tankTurret.transform.position + new Vector2(0, 1) * this.targetDistance;
         this.turretDirection = new Vector2(0, 1);
 
+        this.isHidden = false;
+
     }
 
     // Update is called once per frame
@@ -88,21 +93,24 @@ public class PlayerController : MonoBehaviour
 
         {
 
-            if (InputManager.sharedInstance.GetTurretJoystickShoot())
+            if (!this.isHidden)
             {
+                if (InputManager.sharedInstance.GetTurretJoystickShoot())
+                {
 
-                Vector2 turretInput = InputManager.sharedInstance.GetTurretMovement();
+                    Vector2 turretInput = InputManager.sharedInstance.GetTurretMovement();
 
-                if (turretInput.magnitude > 0.1f)
+                    if (turretInput.magnitude > 0.1f)
+                    {
+                        this.canShoot = false;
+                        StartCoroutine(Shoot());
+                    }
+                }
+                if (InputManager.sharedInstance.GetAttackButton())
                 {
                     this.canShoot = false;
                     StartCoroutine(Shoot());
                 }
-            }
-            if (InputManager.sharedInstance.GetAttackButton())
-            {
-                this.canShoot = false;
-                StartCoroutine(Shoot());
             }
 
         }
@@ -244,11 +252,24 @@ public class PlayerController : MonoBehaviour
         {
             this.speed /= 3;
         }
+
+        if (collision.gameObject.CompareTag("Build"))
+        {
+            Debug.Log("Player oculto");
+            this.isHidden = true;
+        }
+
     }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Sand"))
             this.speed *= 3;
+
+        if (collision.gameObject.CompareTag("Build"))
+        {
+            Debug.Log("Player Ya no Esta oculto");
+            this.isHidden = false;
+        }
     }
 
     public void SetCurrentShoots()
@@ -260,5 +281,10 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetPlayerPosition()
     {
         return this.transform.position;
+    }
+
+    public bool GetIsHidden()
+    {
+        return this.isHidden;
     }
 }

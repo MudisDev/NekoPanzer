@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurretController : MonoBehaviour
@@ -10,7 +11,7 @@ public class TurretController : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float cooldownTime;
     private Rigidbody2D rgbd;
-    private SpriteRenderer spr;
+    [SerializeField] SpriteRenderer spr;
     private bool paralyzedTurret;
 
     [SerializeField] GameObject ammoOrigin;
@@ -19,14 +20,16 @@ public class TurretController : MonoBehaviour
 
     private Vector2 turretDirection;
     [SerializeField] GameObject turretGun;
- 
+
 
     [SerializeField] LayerMask capajugador;
 
     void Awake()
     {
         this.rgbd = GetComponent<Rigidbody2D>();
-        this.spr = GetComponent<SpriteRenderer>();
+
+        if (!this.spr)
+            Debug.Log("El SpriteRenderer de Torreta Enemiga no ha sido asignado");
 
 
     }
@@ -46,7 +49,7 @@ public class TurretController : MonoBehaviour
             return;
 
 
-        if (PlayerDetected())
+        if (PlayerDetected() && !PlayerController.sharedInstance.GetIsHidden())
         {
             if (this.canShoot && !this.paralyzedTurret)
             {
@@ -57,18 +60,18 @@ public class TurretController : MonoBehaviour
 
 
 
-           
-                this.turretDirection = DirectionToPlayer().normalized;
-                float targetAngle = Mathf.Atan2(this.turretDirection.y, this.turretDirection.x) * Mathf.Rad2Deg;
 
-                float smoothAngle = Mathf.LerpAngle(
-                    this.turretGun.transform.eulerAngles.z,
-                    targetAngle - 90f,
-                    Time.deltaTime * 15f
-                );
+            this.turretDirection = DirectionToPlayer().normalized;
+            float targetAngle = Mathf.Atan2(this.turretDirection.y, this.turretDirection.x) * Mathf.Rad2Deg;
 
-                this.turretGun.transform.rotation = Quaternion.Euler(0, 0, smoothAngle);
-            
+            float smoothAngle = Mathf.LerpAngle(
+                this.turretGun.transform.eulerAngles.z,
+                targetAngle - 90f,
+                Time.deltaTime * 15f
+            );
+
+            this.turretGun.transform.rotation = Quaternion.Euler(0, 0, smoothAngle);
+
 
 
 
@@ -113,9 +116,9 @@ public class TurretController : MonoBehaviour
 
     public IEnumerator FreezeTurret()
     {
-        this.spr.color = Color.blue;
+        this.spr.color = Color.red;
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5f);
         this.paralyzedTurret = false;
         this.spr.color = Color.white;
     }

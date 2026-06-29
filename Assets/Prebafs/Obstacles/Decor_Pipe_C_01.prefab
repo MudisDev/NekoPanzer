@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5557060691576459222}
   m_Layer: 0
   m_Name: Decor_Pipe_C_01
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

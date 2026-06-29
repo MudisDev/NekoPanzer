@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // --- COMPORTAMIENTO ---
-        if (playerTarget != null)
+        if (playerTarget != null && !PlayerController.sharedInstance.GetIsHidden())
         {
             ChasePlayer();
         }
@@ -129,7 +129,7 @@ public class EnemyController : MonoBehaviour
         float distanceFromStart = Vector2.Distance(transform.position, initialPosition);
 
         // Si se aleja demasiado, regresa
-        if (distanceFromStart > patrolRadius * 1.5f)
+        if (distanceFromStart > patrolRadius * 2)
         {
             Vector2 back = (initialPosition - (Vector2)transform.position).normalized;
             enemyRigidBody.linearVelocity = back * enemyspeed;
@@ -266,14 +266,14 @@ public class EnemyController : MonoBehaviour
     void OnDrawGizmos()
     {
         // Zona de patrullaje
-        Gizmos.color = Color.green;
+        /* Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(
             Application.isPlaying ? (Vector3)initialPosition : transform.position,
             patrolRadius
-        );
+        ); */
 
         // Zona de detección
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
